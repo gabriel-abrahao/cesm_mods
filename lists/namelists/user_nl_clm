@@ -1,0 +1,7 @@
+&clm_inparm
+ hist_fincl2 = 'WF','WT','H20SOI','SOILLIQ','TG','TSOI','TSRF_FORC'
+ hist_fincl3 = 'TLAI'
+ hist_dov2xy = .true.,.true.,.false.
+ hist_nhtfrq = 0,0
+ hist_mfilt = 12,12,12
+/
