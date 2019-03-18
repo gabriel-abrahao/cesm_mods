@@ -73,6 +73,14 @@ do count = 0,dimsizes(infnames)-1
 	arqout->$vname$ = varout
 	arqout->time_bounds = arqin->time_bounds
 
+	delete(varin)
+	delete(varout)
+	delete(time)
+	delete(lat)
+	delete(lon)
+	delete(ixy)
+	delete(jxy)
+	delete(type)
 end do
 
 end
