@@ -1,14 +1,11 @@
 &cam_inparm 
- mfilt   = 1,365,30,120,240        
- nhtfrq  = 0,-24,-24,-6,-3        
- fincl2  = 'TREFHTMN','TREFHTMX','TREFHT','PRECC','PRECL','PRECT','PRECSC','PRECSL','PSL','PS','QREFHT','U10','V10','WSPDSRFAV','FLDS','FSDS','CLDTOT'
+ mfilt   = 1,365,30,120        
+ nhtfrq  = 0,-24,-24,-6        
+ fincl2  = 'TREFHTMN','TREFHTMX','TREFHT','PRECC','PRECL','PRECT','PRECSC','PRECSL','PSL','PS','QREFHT','U10','V10','WSPDSRFAV','FLDS','FSDS','CLDTOT','SST','ICEFRAC'
  fincl3  = 'CLDICE','CLDLIQ','CLDTOT','CLOUD','CMFMC','CMFMCDZM','FISCCP1',        
            'FLDS','FLDSC','FLNS','FLUT','FLUTC','FSDS','FSDSC','FSNS',        
            'FSNSC','FSNTOA','FSNTOAC','LHFLX','OMEGA','OMEGA500',         
            'PRECSC','PRECSL','PS','Q','QREFHT','RELHUM','RHREFHT','SHFLX',        
            'SOLIN','T','TGCLDIWP','TGCLDLWP','U','V','Z3','SST','ICEFRAC'        
  fincl4  = 'PS:I','PSL:I','Q:I','T:I','U:I','V:I','Z3:I'        
- fincl5  = 'CLDTOT','FLDS','FLDSC','FLNS','FLNSC','FSDS','FSDSC','FSNS',        
-           'LHFLX','PRECC','PRECL','PRECSC','PRECSL','SHFLX',        
-           'PS:I','QREFHT:I','TREFHT:I','TS:I'        
 /
