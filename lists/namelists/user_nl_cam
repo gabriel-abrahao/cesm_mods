@@ -1,7 +1,7 @@
 &cam_inparm 
  mfilt   = 1,365,30,120,240        
  nhtfrq  = 0,-24,-24,-6,-3        
- fincl2  = 'TREFHTMN','TREFHTMX','TREFHT','PRECC','PRECL','PSL','PS','QREFHT','U10','V10','WSPDSRFAV','SOLIN','SOLL','SOLS','SOLLD','SOLSD' 
+ fincl2  = 'TREFHTMN','TREFHTMX','TREFHT','PRECC','PRECL','PSL','PS','QREFHT','U10','V10','WSPDSRFAV','FLDS','FSDS','CLDTOT'
  fincl3  = 'CLDICE','CLDLIQ','CLDTOT','CLOUD','CMFMC','CMFMCDZM','FISCCP1',        
            'FLDS','FLDSC','FLNS','FLUT','FLUTC','FSDS','FSDSC','FSNS',        
            'FSNSC','FSNTOA','FSNTOAC','LHFLX','OMEGA','OMEGA500',         
