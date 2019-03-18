@@ -1,11 +1,19 @@
 load "~/lib_abrahao.ncl"
 begin
-
-infname			=	"../ref_inputs/mytest_I_2000.clm2.h1.0001-01-01-00000.nc"
+inpfolder		=	"../ref_inputs/"
+infname			=	"mytest_I_2000.clm2.h1.0001-01-01-00000.nc"
 vname			=	"TLAI"
 
+outfolder		=	"../output/"
+outfname		=	"4d_" + infname	
 
-arqin = addfile(infname,"r")
+inpfpath		=	inpfolder + infname
+outfpath		=	outfolder + outfname
+
+arqin = addfile(inpfpath,"r")
+
+system("rm " + outfpath)
+arqout = addfile(outfpath,"c")
 
 varin = arqin->$vname$
 printVarSummary(varin)
@@ -31,9 +39,9 @@ nlat = dimsizes(lat)
 nlon = dimsizes(lon)
 ntim = dimsizes(time)
 
-varout = new((/npft,ntim,nlat,nlon/),typeof(varin))
-varout!0 = "pft"
-varout!1 = "time"
+varout = new((/ntim,npft,nlat,nlon/),typeof(varin))
+varout!0 = "time"
+varout!1 = "pft"
 varout!2 = "lat"
 varout!3 = "lon"
 varout&pft = pft
@@ -45,15 +53,16 @@ varout&lon = lon
 printVarSummary(varout)
 
 
-
-t = 0
-do i = 0,nrec-1
-	;print(""+i)
-	;print(ixy(i))
-	varout(type(i),t,jxy(i)-1,ixy(i)-1) = varin(t,i)
+do t = 0,ntim-1
+	print("Running time " + (t+1) + " of " + ntim)
+	do i = 0,nrec-1
+		;print(""+(100*(i+1)/nrec))
+		;print(ixy(i))
+		varout(t,type(i),jxy(i)-1,ixy(i)-1) = (/varin(t,i)/)
+	end do
 end do
 
-dum_write(varout,"varout")
+arqout->$vname$ = varout
 
 
 end
