@@ -71,6 +71,7 @@ do count = 0,dimsizes(infnames)-1
 	end do
 	
 	arqout->$vname$ = varout
+	arqout->time_bounds = arqin->time_bounds
 
 end do
 
