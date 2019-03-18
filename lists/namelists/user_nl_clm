@@ -2,6 +2,6 @@
  hist_fincl2 = 'WA','WT','H2OSOI','SOILLIQ','TG','TSOI','TSRF_FORC','U10','WIND'
  hist_fincl3 = 'TLAI'
  hist_dov2xy = .true.,.true.,.false.
- hist_nhtfrq = 0,0
+ hist_nhtfrq = 0,0,0
  hist_mfilt = 12,12,12
 /
