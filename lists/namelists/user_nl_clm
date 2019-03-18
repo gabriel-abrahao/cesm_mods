@@ -1,5 +1,5 @@
 &clm_inparm
- hist_fincl2 = 'WA','WT','H20SOI','SOILLIQ','TG','TSOI','TSRF_FORC','U10','WIND'
+ hist_fincl2 = 'WA','WT','H2OSOI','SOILLIQ','TG','TSOI','TSRF_FORC','U10','WIND'
  hist_fincl3 = 'TLAI'
  hist_dov2xy = .true.,.true.,.false.
  hist_nhtfrq = 0,0
