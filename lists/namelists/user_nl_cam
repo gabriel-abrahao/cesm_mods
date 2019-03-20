@@ -2,6 +2,6 @@
  mfilt   = 1,365,30,120        
  nhtfrq  = 0,-24,-24,-6        
  fincl2  = 'TREFHTMN','TREFHTMX','TREFHT','PRECC','PRECL','PRECT','PRECSC','PRECSL','PSL','PS','QREFHT','U10','FLDS','FSDS','CLDTOT','SST','ICEFRAC'
- fincl3  = 'OMEGAQ','VQ','UQ'        
+ fincl3  = 'OMEGAQ','VQ'        
  fincl4  = 'PS:I','PSL:I','Q:I','T:I','U:I','V:I','Z3:I'        
 /
