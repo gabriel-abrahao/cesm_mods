@@ -1,0 +1,592 @@
+    1 US                               m/s                26 A  Zonal wind, staggered
+    2 VS                               m/s                26 A  Meridional wind, staggered
+    3 US&IC                            m/s                26 I  Zonal wind, staggered
+    4 VS&IC                            m/s                26 I  Meridional wind, staggered
+    5 PS&IC                            Pa                  1 I  Surface pressure
+    6 T&IC                             K                  26 I  Temperature
+    7 Q&IC                             kg/kg              26 I  Specific humidity
+    8 CLDLIQ&IC                        kg/kg              26 I  Grid box averaged cloud liquid amount
+    9 CLDICE&IC                        kg/kg              26 I  Grid box averaged cloud ice amount
+   10 TAQ                              kg/kg/s            26 A  Q horz + vert + fixer tendency
+   11 TACLDLIQ                         kg/kg/s            26 A  CLDLIQ horz + vert + fixer tendency
+   12 TACLDICE                         kg/kg/s            26 A  CLDICE horz + vert + fixer tendency
+   13 DUH                              K/s                26 A  U horizontal diffusive heating
+   14 DVH                              K/s                26 A  V horizontal diffusive heating
+   15 ENGYCORR                         W/m2               26 A  Energy correction for over-all conservation
+   16 FU                               m/s2               26 A  Zonal wind forcing term
+   17 FV                               m/s2               26 A  Meridional wind forcing term
+   18 FU_S                             m/s2               26 A  Zonal wind forcing term on staggered grid
+   19 FV_S                             m/s2               26 A  Meridional wind forcing term on staggered grid
+   20 UTEND                            m/s2               26 A  U tendency
+   21 VTEND                            m/s2               26 A  V tendency
+   22 TTEND                            K/s                26 A  Total T tendency (all processes)
+   23 LPSTEN                           Pa/s                1 A  Surface pressure tendency
+   24 VAT                              K/s                26 A  Vertical advective tendency of T
+   25 KTOOP                            K/s                26 A  (Kappa*T)*(omega/P)
+   26 VTH3d                            MK/S               27 A  Meridional Heat Flux: 3D zon. mean
+   27 WTH3d                            MK/S               27 A  Vertical Heat Flux: 3D zon. mean
+   28 UV3d                             M2/S2              27 A  Meridional Flux of Zonal Momentum: 3D zon. mean
+   29 UW3d                             M2/S2              27 A  Vertical Flux of Zonal Momentum: 3D zon. mean
+   30 VTH2d                            MK/S                1 A  Meridional Heat Flux: 2D prj of zon. mean - defined on ilev
+   31 WTH2d                            MK/S                1 A  Vertical Heat Flux: 2D prj of zon. mean - defined on ilev
+   32 UV2d                             M2/S2               1 A  Meridional Flux of Zonal Momentum: 2D prj of zon. mean - defined on ilev
+   33 UW2d                             M2/S2               1 A  Vertical Flux of Zonal Momentum; 2D prj of zon. mean - defined on ilev
+   34 U2d                              M/S                 1 A  Zonal-Mean zonal wind - defined on ilev
+   35 V2d                              M/S                 1 A  Zonal-Mean meridional wind - defined on ilev
+   36 W2d                              M/S                 1 A  Zonal-Mean vertical wind - defined on ilev
+   37 TH2d                             K                   1 A  Zonal-Mean potential temp - defined on ilev
+   38 TH                               K                  27 A  Potential Temperature
+   39 MSKtem                           unitless            1 A  TEM mask
+   40 NSTEP                            timestep            1 A  Model timestep
+   41 PHIS                             m2/s2               1 I  Surface geopotential
+   42 PS                               Pa                  1 A  Surface pressure
+   43 T                                K                  26 A  Temperature
+   44 U                                m/s                26 A  Zonal wind
+   45 V                                m/s                26 A  Meridional wind
+   46 Q                                kg/kg              26 A  Specific humidity
+   47 TBP                              K                  26 A  Temperature (before physics)
+   48 QBP                              kg/kg              26 A  Specific humidity                                                                                                                (before physics)
+   49 TAP                              K                  26 A  Temperature (after physics)
+   50 UAP                              m/s                26 A  Zonal wind (after physics)
+   51 VAP                              m/s                26 A  Meridional wind (after physics)
+   52 QAP                              kg/kg              26 A  Specific humidity                                                                                                                (after physics)
+   53 TFIX                             K/s                 1 A  T fixer (T equivalent of Energy correction)
+   54 PTTEND_RESID                     K/s                26 A  T-tendency due to BAB kluge at end of tphysac (diagnostic not part of T-budget)
+   55 TTEND_TOT                        K/s                26 A  Total temperature tendency
+   56 TMCLDLIQ                         kg/m2               1 A  CLDLIQ column burden
+   57 TMCLDICE                         kg/m2               1 A  CLDICE column burden
+   58 Z3                               m                  26 A  Geopotential Height (above sea level)
+   59 Z700                             m                   1 A  Geopotential Z at 700 mbar pressure surface
+   60 Z500                             m                   1 A  Geopotential Z at 500 mbar pressure surface
+   61 Z300                             m                   1 A  Geopotential Z at 300 mbar pressure surface
+   62 Z200                             m                   1 A  Geopotential Z at 200 mbar pressure surface
+   63 Z100                             m                   1 A  Geopotential Z at 100 mbar pressure surface
+   64 Z050                             m                   1 A  Geopotential Z at 50 mbar pressure surface
+   65 ZZ                               m2                 26 A  Eddy height variance
+   66 VZ                               m2/s               26 A  Meridional transport of geopotential energy
+   67 VT                               K m/s              26 A  Meridional heat transport
+   68 VU                               m2/s2              26 A  Meridional flux of zonal momentum
+   69 VV                               m2/s2              26 A  Meridional velocity squared
+   70 VQ                               m/skg/kg           26 A  Meridional water transport
+   71 QQ                               kg2/kg2            26 A  Eddy moisture variance
+   72 OMEGAV                           m Pa/s2            26 A  Vertical flux of meridional momentum
+   73 OMGAOMGA                         Pa2/s2             26 A  Vertical flux of vertical momentum
+   74 OMEGAQ                           kgPa/kgs           26 A  Vertical water transport
+   75 UU                               m2/s2              26 A  Zonal velocity squared
+   76 WSPEED                           m/s                26 X  Horizontal total wind speed
+   77 OMEGA                            Pa/s               26 A  Vertical velocity (pressure)
+   78 OMEGAT                           K Pa/s             26 A  Vertical heat flux
+   79 OMEGAU                           m Pa/s2            26 A  Vertical flux of zonal momentum
+   80 OMEGA850                         Pa/s                1 A  Vertical velocity at 850 mbar pressure surface
+   81 OMEGA500                         Pa/s                1 A  Vertical velocity at 500 mbar pressure surface
+   82 MQ                               kg/m2              26 A  Water vapor mass in layer
+   83 TMQ                              kg/m2               1 A  Total (vertically integrated) precipitatable water
+   84 RELHUM                           percent            26 A  Relative humidity
+   85 RHW                              percent            26 A  Relative humidity with respect to liquid
+   86 RHI                              percent            26 A  Relative humidity with respect to ice
+   87 RHCFMIP                          percent            26 A  Relative humidity with respect to water above 273 K, ice below 273 K
+   88 PSL                              Pa                  1 A  Sea level pressure
+   89 T850                             K                   1 A  Temperature at 850 mbar pressure surface
+   90 T500                             K                   1 A  Temperature at 500 mbar pressure surface
+   91 T300                             K                   1 A  Temperature at 300 mbar pressure surface
+   92 T200                             K                   1 A  Temperature at 200 mbar pressure surface
+   93 Q850                             kg/kg               1 A  Specific Humidity at 850 mbar pressure surface
+   94 Q200                             kg/kg               1 A  Specific Humidity at 700 mbar pressure surface
+   95 U850                             m/s                 1 A  Zonal wind at 850 mbar pressure surface
+   96 U200                             m/s                 1 A  Zonal wind at 200 mbar pressure surface
+   97 U250                             m/s                 1 A  Zonal wind at 250 mbar pressure surface
+   98 V850                             m/s                 1 A  Meridional wind at 850 mbar pressure surface
+   99 V200                             m/s                 1 A  Meridional wind at 200 mbar pressure surface
+  100 V250                             m/s                 1 A  Meridional wind at 250 mbar pressure surface
+  101 TT                               K2                 26 A  Eddy temperature variance
+  102 UBOT                             m/s                 1 A  Lowest model level zonal wind
+  103 VBOT                             m/s                 1 A  Lowest model level meridional wind
+  104 QBOT                             kg/kg               1 A  Lowest model level water vapor mixing ratio
+  105 ZBOT                             m                   1 A  Lowest model level height
+  106 ATMEINT                          J/m2                1 A  Vertically integrated total atmospheric energy
+  107 T1000                            K                   1 A  Temperature at 1000 mbar pressure surface
+  108 T925                             K                   1 A  Temperature at 925 mbar pressure surface
+  109 T700                             K                   1 A  Temperature at 700 mbar pressure surface
+  110 Q1000                            kg/kg               1 A  Specific Humidity at 1000 mbar pressure surface
+  111 Q925                             kg/kg               1 A  Specific Humidity at 925 mbar pressure surface
+  112 T7001000                         K                   1 A  Temperature difference 700 mb - 1000 mb
+  113 TH7001000                        K                   1 A  Theta difference 700 mb - 1000 mb
+  114 THE7001000                       K                   1 A  ThetaE difference 700 mb - 1000 mb
+  115 T8501000                         K                   1 A  Temperature difference 850 mb - 1000 mb
+  116 TH8501000                        K                   1 A  Theta difference 850 mb - 1000 mb
+  117 THE8501000                       K                   1 A  ThetaE difference 850 mb - 1000 mb
+  118 T9251000                         K                   1 A  Temperature difference 925 mb - 1000 mb
+  119 TH9251000                        K                   1 A  Theta difference 925 mb - 1000 mb
+  120 THE9251000                       K                   1 A  ThetaE difference 925 mb - 1000 mb
+  121 PDELDRY                          Pa                 26 A  Dry pressure difference between levels
+  122 PSDRY                            Pa                  1 A  Surface pressure
+  123 DTCOND                           K/s                26 A  T tendency - moist processes
+  124 DTCOND_24_COS                    K/s                26 A  T tendency - moist processes 24hr. cos coeff.
+  125 DTCOND_24_SIN                    K/s                26 A  T tendency - moist processes 24hr. sin coeff.
+  126 DTCOND_12_COS                    K/s                26 A  T tendency - moist processes 12hr. cos coeff.
+  127 DTCOND_12_SIN                    K/s                26 A  T tendency - moist processes 12hr. sin coeff.
+  128 DCQ                              kg/kg/s            26 A  Q tendency due to moist processes
+  129 PRECL                            m/s                 1 A  Large-scale (stable) precipitation rate (liq + ice)
+  130 PRECC                            m/s                 1 A  Convective precipitation rate (liq + ice)
+  131 PRECT                            m/s                 1 A  Total (convective and large-scale) precipitation rate (liq + ice)
+  132 PRECTMX                          m/s                 1 X  Maximum (convective and large-scale) precipitation rate (liq+ice)
+  133 PRECSL                           m/s                 1 A  Large-scale (stable) snow rate (water equivalent)
+  134 PRECSC                           m/s                 1 A  Convective snow rate (water equivalent)
+  135 PRECCav                          m/s                 1 A  Average large-scale precipitation (liq + ice)
+  136 PRECLav                          m/s                 1 A  Average convective precipitation  (liq + ice)
+  137 SHFLX                            W/m2                1 A  Surface sensible heat flux
+  138 LHFLX                            W/m2                1 A  Surface latent heat flux
+  139 QFLX                             kg/m2/s             1 A  Surface water flux
+  140 TAUX                             N/m2                1 A  Zonal surface stress
+  141 TAUY                             N/m2                1 A  Meridional surface stress
+  142 TREFHT                           K                   1 A  Reference height temperature
+  143 TREFHTMN                         K                   1 M  Minimum reference height temperature over output period
+  144 TREFHTMX                         K                   1 X  Maximum reference height temperature over output period
+  145 QREFHT                           kg/kg               1 A  Reference height humidity
+  146 U10                              m/s                 1 A  10m wind speed
+  147 RHREFHT                          fraction            1 A  Reference height relative humidity
+  148 LANDFRAC                         fraction            1 A  Fraction of sfc area covered by land
+  149 ICEFRAC                          fraction            1 A  Fraction of sfc area covered by sea-ice
+  150 OCNFRAC                          fraction            1 A  Fraction of sfc area covered by ocean
+  151 TREFMNAV                         K                   1 A  Average of TREFHT daily minimum
+  152 TREFMXAV                         K                   1 A  Average of TREFHT daily maximum
+  153 TS                               K                   1 A  Surface temperature (radiative)
+  154 TSMN                             K                   1 M  Minimum surface temperature over output period
+  155 TSMX                             K                   1 X  Maximum surface temperature over output period
+  156 SNOWHLND                         m                   1 A  Water equivalent snow depth
+  157 SNOWHICE                         m                   1 A  Water equivalent snow depth
+  158 TBOT                             K                   1 A  Lowest model level temperature
+  159 ASDIR                            1                   1 A  albedo: shortwave, direct
+  160 ASDIF                            1                   1 A  albedo: shortwave, diffuse
+  161 ALDIR                            1                   1 A  albedo: longwave, direct
+  162 ALDIF                            1                   1 A  albedo: longwave, diffuse
+  163 SST                              K                   1 A  sea surface temperature
+  164 PTTEND                           K/s                26 A  T total physics tendency
+  165 PTEQ                             kg/kg/s            26 A  Q total physics tendency
+  166 PTECLDLIQ                        kg/kg/s            26 A  CLDLIQ total physics tendency
+  167 PTECLDICE                        kg/kg/s            26 A  CLDICE total physics tendency
+  168 DMEQ                             kg/kg/s            26 A  Q dme adjustment tendency (FV)
+  169 DMECLDLIQ                        kg/kg/s            26 A  CLDLIQ dme adjustment tendency (FV)
+  170 DMECLDICE                        kg/kg/s            26 A  CLDICE dme adjustment tendency (FV)
+  171 QCWAT&IC                         kg/kg              26 I  q associated with cloud water
+  172 TCWAT&IC                         kg/kg              26 I  T associated with cloud water
+  173 LCWAT&IC                         kg/kg              26 I  Cloud water (ice + liq
+  174 CLOUD&IC                         fraction           26 I  Cloud fraction
+  175 CONCLD&IC                        fraction           26 I  Convective cloud fraction
+  176 TKE&IC                           m2/s2              27 I  Turbulent Kinetic Energy
+  177 CUSH&IC                          m                   1 I  Convective Scale Height
+  178 KVH&IC                           m2/s               27 I  Vertical diffusion diffusivities (heat/moisture)
+  179 KVM&IC                           m2/s               27 I  Vertical diffusion diffusivities (momentum)
+  180 PBLH&IC                          m                   1 I  PBL height
+  181 TPERT&IC                         K                   1 I  Perturbation temperature (eddies in PBL)
+  182 QPERT&IC                         kg/kg               1 I  Perturbation specific humidity (eddies in PBL)
+  183 TBOT&IC                          K                   1 I  Lowest model level temperature
+  184 a2x_BCPHIWET                     kg/m2/s             1 A  wetdep of hydrophilic black carbon
+  185 a2x_BCPHIDRY                     kg/m2/s             1 A  drydep of hydrophilic black carbon
+  186 a2x_BCPHODRY                     kg/m2/s             1 A  drydep of hydrophobic black carbon
+  187 a2x_OCPHIWET                     kg/m2/s             1 A  wetdep of hydrophilic organic carbon
+  188 a2x_OCPHIDRY                     kg/m2/s             1 A  drydep of hydrophilic organic carbon
+  189 a2x_OCPHODRY                     kg/m2/s             1 A  drydep of hydrophobic organic carbon
+  190 a2x_DSTWET1                      kg/m2/s             1 A  wetdep of dust (bin1)
+  191 a2x_DSTDRY1                      kg/m2/s             1 A  drydep of dust (bin1)
+  192 a2x_DSTWET2                      kg/m2/s             1 A  wetdep of dust (bin2)
+  193 a2x_DSTDRY2                      kg/m2/s             1 A  drydep of dust (bin2)
+  194 a2x_DSTWET3                      kg/m2/s             1 A  wetdep of dust (bin3)
+  195 a2x_DSTDRY3                      kg/m2/s             1 A  drydep of dust (bin3)
+  196 a2x_DSTWET4                      kg/m2/s             1 A  wetdep of dust (bin4)
+  197 a2x_DSTDRY4                      kg/m2/s             1 A  drydep of dust (bin4)
+  198 TS1                              K                   1 A  TS1      subsoil temperature
+  199 TS2                              K                   1 A  TS2      subsoil temperature
+  200 TS3                              K                   1 A  TS3      subsoil temperature
+  201 TS4                              K                   1 A  TS4      subsoil temperature
+  202 SICTHK                           m                   1 A  Sea ice thickness
+  203 TSICE                            K                   1 A  Ice temperature
+  204 TS1&IC                           K                   1 I  TS1      subsoil temperature
+  205 TS2&IC                           K                   1 I  TS2      subsoil temperature
+  206 TS3&IC                           K                   1 I  TS3      subsoil temperature
+  207 TS4&IC                           K                   1 I  TS4      subsoil temperature
+  208 SICTHK&IC                        m                   1 I  Sea ice thickness
+  209 TSICE&IC                         K                   1 I  Ice temperature
+  210 SNOWHICE&IC                      m                   1 I  Water equivalent snow depth
+  211 ICEFRAC&IC                       fraction            1 I  Fraction of sfc area covered by sea-ice
+  212 TSICERAD&IC                      K                   1 I  Radiatively equivalent ice temperature
+  213 TEINP                            W/m2                1 A  Total energy of physics input
+  214 TEOUT                            W/m2                1 A  Total energy of physics output
+  215 TEFIX                            W/m2                1 A  Total energy after fixer
+  216 DTCORE                           K/s                26 I  T tendency due to dynamical core
+  217 m_Q_c                            kg/m^2             26 A  Q mass per layer used in climate calculation
+  218 cb_Q_c                           kg/m^2              1 A  Q column burden used in climate calculation
+  219 m_ozone_c                        kg/m^2             26 A  ozone mass per layer used in climate calculation
+  220 cb_ozone_c                       kg/m^2              1 A  ozone column burden used in climate calculation
+  221 m_O2_c                           kg/m^2             26 A  O2 mass per layer used in climate calculation
+  222 cb_O2_c                          kg/m^2              1 A  O2 column burden used in climate calculation
+  223 m_CO2_c                          kg/m^2             26 A  CO2 mass per layer used in climate calculation
+  224 cb_CO2_c                         kg/m^2              1 A  CO2 column burden used in climate calculation
+  225 m_N2O_c                          kg/m^2             26 A  N2O mass per layer used in climate calculation
+  226 cb_N2O_c                         kg/m^2              1 A  N2O column burden used in climate calculation
+  227 m_CH4_c                          kg/m^2             26 A  CH4 mass per layer used in climate calculation
+  228 cb_CH4_c                         kg/m^2              1 A  CH4 column burden used in climate calculation
+  229 m_CFC11_c                        kg/m^2             26 A  CFC11 mass per layer used in climate calculation
+  230 cb_CFC11_c                       kg/m^2              1 A  CFC11 column burden used in climate calculation
+  231 m_CFC12_c                        kg/m^2             26 A  CFC12 mass per layer used in climate calculation
+  232 cb_CFC12_c                       kg/m^2              1 A  CFC12 column burden used in climate calculation
+  233 m_sulf_c                         kg/m^2             26 A  sulf mass per layer used in climate calculation
+  234 cb_sulf_c                        kg/m^2              1 A  sulf column burden used in climate calculation
+  235 m_dust1_c                        kg/m^2             26 A  dust1 mass per layer used in climate calculation
+  236 cb_dust1_c                       kg/m^2              1 A  dust1 column burden used in climate calculation
+  237 m_dust2_c                        kg/m^2             26 A  dust2 mass per layer used in climate calculation
+  238 cb_dust2_c                       kg/m^2              1 A  dust2 column burden used in climate calculation
+  239 m_dust3_c                        kg/m^2             26 A  dust3 mass per layer used in climate calculation
+  240 cb_dust3_c                       kg/m^2              1 A  dust3 column burden used in climate calculation
+  241 m_dust4_c                        kg/m^2             26 A  dust4 mass per layer used in climate calculation
+  242 cb_dust4_c                       kg/m^2              1 A  dust4 column burden used in climate calculation
+  243 m_bcar1_c                        kg/m^2             26 A  bcar1 mass per layer used in climate calculation
+  244 cb_bcar1_c                       kg/m^2              1 A  bcar1 column burden used in climate calculation
+  245 m_bcar2_c                        kg/m^2             26 A  bcar2 mass per layer used in climate calculation
+  246 cb_bcar2_c                       kg/m^2              1 A  bcar2 column burden used in climate calculation
+  247 m_ocar1_c                        kg/m^2             26 A  ocar1 mass per layer used in climate calculation
+  248 cb_ocar1_c                       kg/m^2              1 A  ocar1 column burden used in climate calculation
+  249 m_ocar2_c                        kg/m^2             26 A  ocar2 mass per layer used in climate calculation
+  250 cb_ocar2_c                       kg/m^2              1 A  ocar2 column burden used in climate calculation
+  251 m_SSLTA_c                        kg/m^2             26 A  SSLTA mass per layer used in climate calculation
+  252 cb_SSLTA_c                       kg/m^2              1 A  SSLTA column burden used in climate calculation
+  253 m_SSLTC_c                        kg/m^2             26 A  SSLTC mass per layer used in climate calculation
+  254 cb_SSLTC_c                       kg/m^2              1 A  SSLTC column burden used in climate calculation
+  255 AEROD_v                          1                   1 A  Total Aerosol Optical Depth in visible band
+  256 ODV_sulf                         1                   1 A  sulf optical depth in visible band
+  257 ODV_dust1                        1                   1 A  dust1 optical depth in visible band
+  258 ODV_dust2                        1                   1 A  dust2 optical depth in visible band
+  259 ODV_dust3                        1                   1 A  dust3 optical depth in visible band
+  260 ODV_dust4                        1                   1 A  dust4 optical depth in visible band
+  261 ODV_bcar1                        1                   1 A  bcar1 optical depth in visible band
+  262 ODV_bcar2                        1                   1 A  bcar2 optical depth in visible band
+  263 ODV_ocar1                        1                   1 A  ocar1 optical depth in visible band
+  264 ODV_ocar2                        1                   1 A  ocar2 optical depth in visible band
+  265 ODV_SSLTA                        1                   1 A  SSLTA optical depth in visible band
+  266 ODV_SSLTC                        1                   1 A  SSLTC optical depth in visible band
+  267 ozone                            mol/mol            26 I  prescribed ozone
+  268 sulf_D                           kg/kg              26 A  prescribed aero
+  269 bcar1_D                          kg/kg              26 A  prescribed aero
+  270 bcar2_D                          kg/kg              26 A  prescribed aero
+  271 ocar1_D                          kg/kg              26 A  prescribed aero
+  272 ocar2_D                          kg/kg              26 A  prescribed aero
+  273 sslt1_D                          kg/kg              26 A  prescribed aero
+  274 sslt2_D                          kg/kg              26 A  prescribed aero
+  275 sslt3_D                          kg/kg              26 A  prescribed aero
+  276 sslt4_D                          kg/kg              26 A  prescribed aero
+  277 dust1_D                          kg/kg              26 A  prescribed aero
+  278 dust2_D                          kg/kg              26 A  prescribed aero
+  279 dust3_D                          kg/kg              26 A  prescribed aero
+  280 dust4_D                          kg/kg              26 A  prescribed aero
+  281 BCDEPWET_D                       kg/m2/s             1 A  prescribed aero dep
+  282 BCPHODRY_D                       kg/m2/s             1 A  prescribed aero dep
+  283 BCPHIDRY_D                       kg/m2/s             1 A  prescribed aero dep
+  284 OCDEPWET_D                       kg/m2/s             1 A  prescribed aero dep
+  285 OCPHODRY_D                       kg/m2/s             1 A  prescribed aero dep
+  286 OCPHIDRY_D                       kg/m2/s             1 A  prescribed aero dep
+  287 DSTX01DD_D                       kg/m2/s             1 A  prescribed aero dep
+  288 DSTX02DD_D                       kg/m2/s             1 A  prescribed aero dep
+  289 DSTX03DD_D                       kg/m2/s             1 A  prescribed aero dep
+  290 DSTX04DD_D                       kg/m2/s             1 A  prescribed aero dep
+  291 DSTX01WD_D                       kg/m2/s             1 A  prescribed aero dep
+  292 DSTX02WD_D                       kg/m2/s             1 A  prescribed aero dep
+  293 DSTX03WD_D                       kg/m2/s             1 A  prescribed aero dep
+  294 DSTX04WD_D                       kg/m2/s             1 A  prescribed aero dep
+  295 TTGWORO                          K/s                26 A  T tendency - orographic gravity wave drag
+  296 UTGWORO                          m/s2               26 A  U tendency - orographic gravity wave drag
+  297 VTGWORO                          m/s2               26 A  V tendency - orographic gravity wave drag
+  298 TAUGWX                           N/m2                1 A  Zonal gravity wave surface stress
+  299 TAUGWY                           N/m2                1 A  Meridional gravity wave surface stress
+  300 VD01                             kg/kg/s            26 A  Vertical diffusion of Q
+  301 VDCLDLIQ                         kg/kg/s            26 A  Vertical diffusion of CLDLIQ
+  302 VDCLDICE                         kg/kg/s            26 A  Vertical diffusion of CLDICE
+  303 TKE                              m2/s2              27 A  Turbulent Kinetic Energy
+  304 PBLH                             m                   1 A  PBL height
+  305 TPERT                            K                   1 A  Perturbation temperature (eddies in PBL)
+  306 QPERT                            kg/kg               1 A  Perturbation specific humidity (eddies in PBL)
+  307 USTAR                            m/s                 1 A  Surface friction velocity
+  308 KVH                              m2/s               27 A  Vertical diffusion diffusivities (heat/moisture)
+  309 KVM                              m2/s               27 A  Vertical diffusion diffusivities (momentum)
+  310 KVT                              m2/s               27 A  Vertical diffusion kinematic molecular conductivity
+  311 CGS                              s/m2               27 A  Counter-gradient coeff on surface kinematic fluxes
+  312 DTVKE                            K/s                26 A  dT/dt vertical diffusion KE dissipation
+  313 DTV                              K/s                26 A  T vertical diffusion
+  314 DUV                              m/s2               26 A  U vertical diffusion
+  315 DVV                              m/s2               26 A  V vertical diffusion
+  316 QT                               kg/kg              26 A  Total water mixing ratio
+  317 SL                               J/kg               26 A  Liquid water static energy
+  318 SLV                              J/kg               26 A  Liq wat virtual static energy
+  319 SLFLX                            W/m2               27 A  Liquid static energy flux
+  320 QTFLX                            W/m2               27 A  Total water flux
+  321 UFLX                             W/m2               27 A  Zonal momentum flux
+  322 VFLX                             W/m2               27 A  Meridional momentm flux
+  323 WGUSTD                           m/s                 1 A  wind gusts from turbulence
+  324 qt_pre_PBL                       kg/kg              26 A  qt_prePBL
+  325 sl_pre_PBL                       J/kg               26 A  sl_prePBL
+  326 slv_pre_PBL                      J/kg               26 A  slv_prePBL
+  327 u_pre_PBL                        m/s                26 A  u_prePBL
+  328 v_pre_PBL                        m/s                26 A  v_prePBL
+  329 qv_pre_PBL                       kg/kg              26 A  qv_prePBL
+  330 ql_pre_PBL                       kg/kg              26 A  ql_prePBL
+  331 qi_pre_PBL                       kg/kg              26 A  qi_prePBL
+  332 t_pre_PBL                        K                  26 A  t_prePBL
+  333 rh_pre_PBL                       %                  26 A  rh_prePBL
+  334 qt_aft_PBL                       kg/kg              26 A  qt_afterPBL
+  335 sl_aft_PBL                       J/kg               26 A  sl_afterPBL
+  336 slv_aft_PBL                      J/kg               26 A  slv_afterPBL
+  337 u_aft_PBL                        m/s                26 A  u_afterPBL
+  338 v_aft_PBL                        m/s                26 A  v_afterPBL
+  339 qv_aft_PBL                       kg/kg              26 A  qv_afterPBL
+  340 ql_aft_PBL                       kg/kg              26 A  ql_afterPBL
+  341 qi_aft_PBL                       kg/kg              26 A  qi_afterPBL
+  342 t_aft_PBL                        K                  26 A  t_afterPBL
+  343 rh_aft_PBL                       %                  26 A  rh_afterPBL
+  344 slflx_PBL                        J/m2/s             27 A  sl flux by PBL
+  345 qtflx_PBL                        kg/m2/s            27 A  qt flux by PBL
+  346 uflx_PBL                         kg/m/s2            27 A  u flux by PBL
+  347 vflx_PBL                         kg/m/s2            27 A  v flux by PBL
+  348 slflx_cg_PBL                     J/m2/s             27 A  sl_cg flux by PBL
+  349 qtflx_cg_PBL                     kg/m2/s            27 A  qt_cg flux by PBL
+  350 uflx_cg_PBL                      kg/m/s2            27 A  u_cg flux by PBL
+  351 vflx_cg_PBL                      kg/m/s2            27 A  v_cg flux by PBL
+  352 qtten_PBL                        kg/kg/s            26 A  qt tendency by PBL
+  353 slten_PBL                        J/kg/s             26 A  sl tendency by PBL
+  354 uten_PBL                         m/s2               26 A  u tendency by PBL
+  355 vten_PBL                         m/s2               26 A  v tendency by PBL
+  356 qvten_PBL                        kg/kg/s            26 A  qv tendency by PBL
+  357 qlten_PBL                        kg/kg/s            26 A  ql tendency by PBL
+  358 qiten_PBL                        kg/kg/s            26 A  qi tendency by PBL
+  359 tten_PBL                         K/s                26 A  T tendency by PBL
+  360 rhten_PBL                        %/s                26 A  RH tendency by PBL
+  361 GCLDLWP                          gram/m2            26 A  Grid-box cloud water path
+  362 ICLDTWP                          gram/m2            26 A  In-cloud cloud total water path (liquid and ice)
+  363 TGCLDCWP                         gram/m2             1 A  Total grid-box cloud water path (liquid and ice)
+  364 TGCLDLWP                         gram/m2             1 A  Total grid-box cloud liquid water path
+  365 TGCLDIWP                         gram/m2             1 A  Total grid-box cloud ice water path
+  366 EFFCLD                           fraction           26 A  Effective cloud fraction
+  367 SETLWP                           gram/m2            26 A  Prescribed liquid water path
+  368 LWSH                             m                   1 A  Liquid water scale height
+  369 ICLDIWP                          gram/m2            26 A  In-cloud ice water path
+  370 EMIS                             1                  26 A  cloud emissivity
+  371 REL                              micron             26 A  effective liquid drop radius
+  372 REI                              micron             26 A  effective ice particle radius
+  373 SOLIN                            W/m2                1 A  Solar insolation
+  374 SOLL                             W/m2                1 A  Solar downward near infrared direct  to surface
+  375 SOLS                             W/m2                1 A  Solar downward visible direct  to surface
+  376 SOLLD                            W/m2                1 A  Solar downward near infrared diffuse to surface
+  377 SOLSD                            W/m2                1 A  Solar downward visible diffuse to surface
+  378 QRS                              K/s                26 A  Solar heating rate
+  379 QRSC                             K/s                26 A  Clearsky solar heating rate
+  380 FSNS                             W/m2                1 A  Net solar flux at surface
+  381 FSNT                             W/m2                1 A  Net solar flux at top of model
+  382 FSNTOA                           W/m2                1 A  Net solar flux at top of atmosphere
+  383 FSUTOA                           W/m2                1 A  Upwelling solar flux at top of atmosphere
+  384 FSNTOAC                          W/m2                1 A  Clearsky net solar flux at top of atmosphere
+  385 FSDTOA                           W/m2                1 A  Downwelling solar flux at top of atmosphere
+  386 FSN200                           W/m2                1 A  Net shortwave flux at 200 mb
+  387 FSN200C                          W/m2                1 A  Clearsky net shortwave flux at 200 mb
+  388 FSNTC                            W/m2                1 A  Clearsky net solar flux at top of model
+  389 FSNSC                            W/m2                1 A  Clearsky net solar flux at surface
+  390 FSDSC                            W/m2                1 A  Clearsky downwelling solar flux at surface
+  391 FSDS                             W/m2                1 A  Downwelling solar flux at surface
+  392 FUS                              W/m2               27 I  Shortwave upward flux
+  393 FDS                              W/m2               27 I  Shortwave downward flux
+  394 FUSC                             W/m2               27 I  Shortwave clear-sky upward flux
+  395 FDSC                             W/m2               27 I  Shortwave clear-sky downward flux
+  396 FSNIRTOA                         W/m2                1 A  Net near-infrared flux (Nimbus-7 WFOV) at top of atmosphere
+  397 FSNRTOAC                         W/m2                1 A  Clearsky net near-infrared flux (Nimbus-7 WFOV) at top of atmosphere
+  398 FSNRTOAS                         W/m2                1 A  Net near-infrared flux (>= 0.7 microns) at top of atmosphere
+  399 SWCF                             W/m2                1 A  Shortwave cloud forcing
+  400 TOT_CLD_VISTAU                   1                  26 A  Total gbx cloud visible sw optical depth
+  401 TOT_ICLD_VISTAU                  1                  26 A  Total in-cloud visible sw optical depth
+  402 LIQ_ICLD_VISTAU                  1                  26 A  Liquid in-cloud visible sw optical depth
+  403 ICE_ICLD_VISTAU                  1                  26 A  Ice in-cloud visible sw optical depth
+  404 QRL                              K/s                26 A  Longwave heating rate
+  405 QRLC                             K/s                26 A  Clearsky longwave heating rate
+  406 FLNS                             W/m2                1 A  Net longwave flux at surface
+  407 FLDS                             W/m2                1 A  Downwelling longwave flux at surface
+  408 FLNT                             W/m2                1 A  Net longwave flux at top of model
+  409 FLUT                             W/m2                1 A  Upwelling longwave flux at top of model
+  410 FLUTC                            W/m2                1 A  Clearsky upwelling longwave flux at top of model
+  411 FLNTC                            W/m2                1 A  Clearsky net longwave flux at top of model
+  412 FLN200                           W/m2                1 A  Net longwave flux at 200 mb
+  413 FLN200C                          W/m2                1 A  Clearsky net longwave flux at 200 mb
+  414 FLNSC                            W/m2                1 A  Clearsky net longwave flux at surface
+  415 FLDSC                            W/m2                1 A  Clearsky downwelling longwave flux at surface
+  416 LWCF                             W/m2                1 A  Longwave cloud forcing
+  417 FUL                              W/m2               27 I  Longwave upward flux
+  418 FDL                              W/m2               27 I  Longwave downward flux
+  419 FULC                             W/m2               27 I  Longwave clear-sky upward flux
+  420 FDLC                             W/m2               27 I  Longwave clear-sky downward flux
+  421 HR                               K/s                26 A  Heating rate needed for d(theta)/dt computation
+  422 SRFRAD                           W/m2                1 A  Net radiative flux at surface
+  423 CLOUD                            fraction           26 A  Cloud fraction
+  424 CLDTOT                           fraction            1 A  Vertically-integrated total cloud
+  425 CLDLOW                           fraction            1 A  Vertically-integrated low cloud
+  426 CLDMED                           fraction            1 A  Vertically-integrated mid-level cloud
+  427 CLDHGH                           fraction            1 A  Vertically-integrated high cloud
+  428 qt_pre_Cu                        kg/kg              26 I  qt_preCU
+  429 sl_pre_Cu                        J/kg               26 I  sl_preCU
+  430 slv_pre_Cu                       J/kg               26 I  slv_preCU
+  431 u_pre_Cu                         m/s                26 I  u_preCU
+  432 v_pre_Cu                         m/s                26 I  v_preCU
+  433 qv_pre_Cu                        kg/kg              26 I  qv_preCU
+  434 ql_pre_Cu                        kg/kg              26 I  ql_preCU
+  435 qi_pre_Cu                        kg/kg              26 I  qi_preCU
+  436 t_pre_Cu                         K                  26 I  t_preCU
+  437 rh_pre_Cu                        %                  26 I  rh_preCU
+  438 qt_aft_Cu                        kg/kg              26 I  qt_afterCU
+  439 sl_aft_Cu                        J/kg               26 I  sl_afterCU
+  440 slv_aft_Cu                       J/kg               26 I  slv_afterCU
+  441 u_aft_Cu                         m/s                26 I  u_afterCU
+  442 v_aft_Cu                         m/s                26 I  v_afterCU
+  443 qv_aft_Cu                        kg/kg              26 I  qv_afterCU
+  444 ql_aft_Cu                        kg/kg              26 I  ql_afterCU
+  445 qi_aft_Cu                        kg/kg              26 I  qi_afterCU
+  446 t_aft_Cu                         K                  26 I  t_afterCU
+  447 rh_aft_Cu                        %                  26 I  rh_afterCU
+  448 tten_Cu                          K/s                26 I  Temprtaure tendency by cumulus convection
+  449 rhten_Cu                         %/s                26 I  RH tendency by cumumus convection
+  450 CMFDT                            K/s                26 A  T tendency - shallow convection
+  451 CMFDQ                            kg/kg/s            26 A  QV tendency - shallow convection
+  452 CMFDLIQ                          kg/kg/s            26 A  Cloud liq tendency - shallow convection
+  453 CMFDICE                          kg/kg/s            26 A  Cloud ice tendency - shallow convection
+  454 CMFDQR                           kg/kg/s            26 A  Q tendency - shallow convection rainout
+  455 EVAPTCM                          K/s                26 A  T tendency - Evaporation/snow prod from Hack convection
+  456 FZSNTCM                          K/s                26 A  T tendency - Rain to snow conversion from Hack convection
+  457 EVSNTCM                          K/s                26 A  T tendency - Snow to rain prod from Hack convection
+  458 EVAPQCM                          kg/kg/s            26 A  Q tendency - Evaporation from Hack convection
+  459 QC                               kg/kg/s            26 A  Q tendency - shallow convection LW export
+  460 PRECSH                           m/s                 1 A  Shallow Convection precipitation rate
+  461 CMFMC                            kg/m2/s            27 A  Moist shallow convection mass flux
+  462 CMFSL                            W/m2               27 A  Moist shallow convection liquid water static energy flux
+  463 CMFLQ                            W/m2               27 A  Moist shallow convection total water flux
+  464 CIN                              J/kg                1 A  Convective inhibition
+  465 CBMF                             kg/m2/s             1 A  Cloud base mass flux
+  466 CLDTOP                           1                   1 I  Vertical index of cloud top
+  467 CLDBOT                           1                   1 I  Vertical index of cloud base
+  468 PCLDTOP                          1                   1 A  Pressure of cloud top
+  469 PCLDBOT                          1                   1 A  Pressure of cloud base
+  470 FREQSH                           fraction            1 A  Fractional occurance of shallow convection
+  471 HKFLXPRC                         kg/m2/s            27 A  Flux of precipitation from HK convection
+  472 HKFLXSNW                         kg/m2/s            27 A  Flux of snow from HK convection
+  473 HKNTPRPD                         kg/kg/s            26 A  Net precipitation production from HK convection
+  474 HKNTSNPD                         kg/kg/s            26 A  Net snow production from HK convection
+  475 HKEIHEAT                         W/kg               26 A  Heating by ice and evaporation in HK convection
+  476 PRECZ                            m/s                 1 A  total precipitation from ZM convection
+  477 ZMDT                             K/s                26 A  T tendency - Zhang-McFarlane moist convection
+  478 ZMDQ                             kg/kg/s            26 A  Q tendency - Zhang-McFarlane moist convection
+  479 ZMDICE                           kg/kg/s            26 A  Cloud ice tendency - Zhang-McFarlane convection
+  480 ZMDLIQ                           kg/kg/s            26 A  Cloud liq tendency - Zhang-McFarlane convection
+  481 EVAPTZM                          K/s                26 A  T tendency - Evaporation/snow prod from Zhang convection
+  482 FZSNTZM                          K/s                26 A  T tendency - Rain to snow conversion from Zhang convection
+  483 EVSNTZM                          K/s                26 A  T tendency - Snow to rain prod from Zhang convection
+  484 EVAPQZM                          kg/kg/s            26 A  Q tendency - Evaporation from Zhang-McFarlane moist convection
+  485 ZMFLXPRC                         kg/m2/s            27 A  Flux of precipitation from ZM convection
+  486 ZMFLXSNW                         kg/m2/s            27 A  Flux of snow from ZM convection
+  487 ZMNTPRPD                         kg/kg/s            26 A  Net precipitation production from ZM convection
+  488 ZMNTSNPD                         kg/kg/s            26 A  Net snow production from ZM convection
+  489 ZMEIHEAT                         W/kg               26 A  Heating by ice and evaporation in ZM convection
+  490 CMFMCDZM                         kg/m2/s            27 A  Convection mass flux from ZM deep
+  491 PRECCDZM                         m/s                 1 A  Convective precipitation rate from ZM deep
+  492 PCONVB                           Pa                  1 A  convection base pressure
+  493 PCONVT                           Pa                  1 A  convection top  pressure
+  494 CAPE                             J/kg                1 A  Convectively available potential energy
+  495 FREQZM                           fraction            1 A  Fractional occurance of ZM convection
+  496 ZMMTT                            K/s                26 A  T tendency - ZM convective momentum transport
+  497 ZMMTU                            m/s2               26 A  U tendency - ZM convective momentum transport
+  498 ZMMTV                            m/s2               26 A  V tendency - ZM convective momentum transport
+  499 ZMMU                             kg/m2/s            26 A  ZM convection updraft mass flux
+  500 ZMMD                             kg/m2/s            26 A  ZM convection downdraft mass flux
+  501 ZMUPGU                           m/s2               26 A  zonal force from ZM updraft pressure gradient term
+  502 ZMUPGD                           m/s2               26 A  zonal force from ZM downdraft pressure gradient term
+  503 ZMVPGU                           m/s2               26 A  meridional force from ZM updraft pressure gradient term
+  504 ZMVPGD                           m/s2               26 A  merdional force from ZM downdraft pressure gradient term
+  505 ZMICUU                           m/s                26 A  ZM in-cloud U updrafts
+  506 ZMICUD                           m/s                26 A  ZM in-cloud U downdrafts
+  507 ZMICVU                           m/s                26 A  ZM in-cloud V updrafts
+  508 ZMICVD                           m/s                26 A  ZM in-cloud V downdrafts
+  509 CLDLIQ                           kg/kg              26 A  Grid box averaged cloud liquid amount
+  510 SFCLDLIQ                         kg/m2/s             1 A  CLDLIQ surface flux
+  511 CLDICE                           kg/kg              26 A  Grid box averaged cloud ice amount
+  512 SFCLDICE                         kg/m2/s             1 A  CLDICE surface flux
+  513 CLDLIQAP                         kg/kg              26 A  CLDLIQ after physics
+  514 CLDICEAP                         kg/kg              26 A  CLDICE after physics
+  515 CLDLIQBP                         kg/kg              26 A  CLDLIQ before physics
+  516 CLDICEBP                         kg/kg              26 A  CLDICE before physics
+  517 FWAUT                            fraction           26 A  Relative importance of liquid autoconversion
+  518 FSAUT                            fraction           26 A  Relative importance of ice autoconversion
+  519 FRACW                            fraction           26 A  Relative importance of rain accreting liquid
+  520 FSACW                            fraction           26 A  Relative importance of snow accreting liquid
+  521 FSACI                            fraction           26 A  Relative importance of snow accreting ice
+  522 CME                              kg/kg/s            26 A  Rate of cond-evap within the cloud
+  523 CMEICE                           kg/kg/s            26 A  Rate of cond-evap of ice within the cloud
+  524 CMELIQ                           kg/kg/s            26 A  Rate of cond-evap of liq within the cloud
+  525 ICE2PR                           kg/kg/s            26 A  Rate of conversion of ice to precip
+  526 LIQ2PR                           kg/kg/s            26 A  Rate of conversion of liq to precip
+  527 ZMDLF                            kg/kg/s            26 A  Detrained liquid water from ZM convection
+  528 SHDLF                            kg/kg/s            26 A  Detrained liquid water from shallow convection
+  529 PRODPREC                         kg/kg/s            26 A  Rate of conversion of condensate to precip
+  530 EVAPPREC                         kg/kg/s            26 A  Rate of evaporation of falling precip
+  531 EVAPSNOW                         kg/kg/s            26 A  Rate of evaporation of falling snow
+  532 HPROGCLD                         W/kg               26 A  Heating from prognostic clouds
+  533 HCME                             W/kg               26 A  Heating from cond-evap within the cloud
+  534 HEVAP                            W/kg               26 A  Heating from evaporation of falling precip
+  535 HFREEZ                           W/kg               26 A  Heating rate due to freezing of precip
+  536 HMELT                            W/kg               26 A  Heating from snow melt
+  537 HREPART                          W/kg               26 A  Heating from cloud ice/liquid repartitioning
+  538 REPARTICE                        kg/kg/s            26 A  Cloud ice tendency from cloud ice/liquid repartitioning
+  539 REPARTLIQ                        kg/kg/s            26 A  Cloud liq tendency from cloud ice/liquid repartitioning
+  540 FICE                             fraction           26 A  Fractional ice content within cloud
+  541 ICWMR                            kg/kg              26 A  Prognostic in-cloud water mixing ratio
+  542 ICIMR                            kg/kg              26 A  Prognostic in-cloud ice mixing ratio
+  543 ICWMRST                          kg/kg              26 A  Prognostic in-stratus water mixing ratio
+  544 ICIMRST                          kg/kg              26 A  Prognostic in-stratus ice mixing ratio
+  545 PCSNOW                           m/s                 1 A  Snow fall from prognostic clouds
+  546 DQSED                            kg/kg/s            26 A  Water vapor tendency from cloud sedimentation
+  547 DLSED                            kg/kg/s            26 A  Cloud liquid tendency from sedimentation
+  548 DISED                            kg/kg/s            26 A  Cloud ice tendency from sedimentation
+  549 HSED                             W/kg               26 A  Heating from cloud sediment evaporation
+  550 SNOWSED                          m/s                 1 A  Snow from cloud ice sedimentation
+  551 RAINSED                          m/s                 1 A  Rain from cloud liquid sedimentation
+  552 PRECSED                          m/s                 1 A  Precipitation from cloud sedimentation
+  553 CNVCLD                           fraction            1 A  Vertically integrated convective cloud amount
+  554 CLDST                            fraction           26 A  Stratus cloud fraction
+  555 CONCLD                           fraction           26 A  Convective cloud cover
+  556 AST                              fraction           26 A  Stratus cloud fraction
+  557 LIQCLDF                          fraction           26 A  Stratus Liquid cloud fraction
+  558 ICECLDF                          fraction           26 A  Stratus ICE cloud fraction
+  559 IWC                              kg/m3              26 A  Grid box average ice water content
+  560 LWC                              kg/m3              26 A  Grid box average liquid water content
+  561 ICWNC                            m-3                26 A  Prognostic in-cloud water number conc
+  562 ICINC                            m-3                26 A  Prognostic in-cloud ice number conc
+  563 EFFLIQ                           Micron             26 A  Prognostic droplet effective radius
+  564 EFFLIQ_IND                       Micron             26 A  Prognostic droplet effective radius (indirect effect)
+  565 EFFICE                           Micron             26 A  Prognostic ice effective radius
+  566 LS_FLXPRC                        kg/m2/s            27 A  ls stratiform gbm interface rain+snow flux
+  567 LS_FLXSNW                        kg/m2/s            27 A  ls stratiform gbm interface snow flux
+  568 PRACWO                           1/s                26 A  Accretion of cloud water by rain
+  569 PSACWO                           1/s                26 A  Accretion of cloud water by snow
+  570 PSACIO                           1/s                26 A  Accretion of cloud ice by snow
+  571 CLDLIQSTR                        kg/kg              26 A  Stratiform CLDLIQ
+  572 CLDICESTR                        kg/kg              26 A  Stratiform CLDICE
+  573 CLDLIQCON                        kg/kg              26 A  Convective CLDLIQ
+  574 CLDICECON                        kg/kg              26 A  Convective CLDICE
+  575 SSLTA                            kg/kg              26 A  sea salt
+  576 SSLTC                            kg/kg              26 A  sea salt
+  577 TROP_P                           Pa                  1 A  Tropopause Pressure
+  578 TROP_T                           K                   1 A  Tropopause Temperature
+  579 TROP_Z                           m                   1 A  Tropopause Height
+  580 TROP_PD                          probability        26 A  Tropopause Probabilty
+  581 TROP_FD                          probability         1 A  Tropopause Found
+  582 TROPP_P                          Pa                  1 A  Tropopause Pressure (primary)
+  583 TROPP_T                          K                   1 A  Tropopause Temperature (primary)
+  584 TROPP_Z                          m                   1 A  Tropopause Height (primary)
+  585 TROPP_PD                         probability        26 A  Tropopause Distribution (primary)
+  586 TROPP_FD                         probability         1 A  Tropopause Found (primary)
+  587 hstobie_trop                     fraction of mode   26 I  Lowest level with stratospheric chemsitry
+  588 hstobie_linoz                    fraction of mode   26 I  Lowest possible Linoz level
+  589 hstobie_tropop                   fraction of mode   26 I  Troposphere boundary calculated in chemistry
+  590 SGH                              m                   1 I  Standard deviation of orography
+  591 SGH30                            m                   1 I  Standard deviation of 30s orography
+  592 DQP                              kg/kg/s            26 A  Specific humidity tendency due to precipitation
