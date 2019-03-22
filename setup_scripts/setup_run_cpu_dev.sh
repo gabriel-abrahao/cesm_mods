@@ -51,7 +51,7 @@ echo "Copying user_nl_cam"
 cp $nlfolder/user_nl_cam .
 
 echo "Copying env_mach_pes.xml for "$queue
-cp $pefolder"/env_mach_pes_"$queue".xml" .
+cp $pefolder"/env_mach_pes_"$queue".xml" env_mach_pes.xml
 npes=$(cat env_mach_pes.xml | grep '"TOTALPES"' | grep -o '[0-9][0-9]*')
 
 echo "TOTALPES is "$npes
