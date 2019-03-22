@@ -10,7 +10,7 @@ STOP_N=24
 REST_OPTION="nyears"
 REST_N=2
 
-rcp=$(basename $PWD | sed 's/.*_\(rcp.\..\)_.*/\1/')
+rcp=$(basename $PWD | sed 's/.*\(rcp.\..\)_.*/\1/')
 member=$(basename $PWD | sed 's/.*_\([0-9]\{3\}\)$/\1/')
 scenario=$(basename $PWD | sed 's/.*_\([a-z]\{3\}\)_[0-9]\{3\}$/\1/')
 

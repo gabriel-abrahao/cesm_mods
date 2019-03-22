@@ -10,7 +10,7 @@ STOP_N=31
 REST_OPTION="ndays"
 REST_N=31
 
-rcp=$(basename $PWD | sed 's/.*_\(rcp.\..\)_.*/\1/')
+rcp=$(basename $PWD | sed 's/.*\(rcp.\..\)_.*/\1/')
 member=$(basename $PWD | sed 's/.*_\([0-9]\{3\}\)$/\1/')
 scenario=$(basename $PWD | sed 's/.*_\([a-z]\{3\}\)_[0-9]\{3\}$/\1/')
 

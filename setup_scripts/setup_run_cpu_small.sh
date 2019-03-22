@@ -10,7 +10,7 @@ STOP_N=6
 REST_OPTION="nmonths"
 REST_N=6
 
-rcp=$(basename $PWD | sed 's/.*_\(rcp.\..\)_.*/\1/')
+rcp=$(basename $PWD | sed 's/.*\(rcp.\..\)_.*/\1/')
 member=$(basename $PWD | sed 's/.*_\([0-9]\{3\}\)$/\1/')
 scenario=$(basename $PWD | sed 's/.*_\([a-z]\{3\}\)_[0-9]\{3\}$/\1/')
 
