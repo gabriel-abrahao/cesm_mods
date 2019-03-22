@@ -1,6 +1,6 @@
 &cam_inparm 
  mfilt   = 1,365        
  nhtfrq  = 0,-24   
- fincl1  = 'OMEGA','OMEGAQ','V','U','VQ','T','Q' 
- fincl2  = 'TREFHTMN','TREFHTMX','TREFHT','PRECC','PRECL','PRECT','PRECSC','PRECSL','PSL','PS','QREFHT','U10','FLDS','FSDS','CLDTOT','SST','ICEFRAC'
+ fincl1  = 'OMEGA','OMEGAQ','V','U','VQ','T','Q','LHFLX','SHFLX','FSNS','FLNS' 
+ fincl2  = 'TREFHTMN','TREFHTMX','TREFHT','PRECC','PRECL','PRECT','PS','QREFHT','U10','FLDS','FSDS','CLDTOT','SST'
 /
