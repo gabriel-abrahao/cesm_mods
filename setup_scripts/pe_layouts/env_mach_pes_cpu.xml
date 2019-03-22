@@ -62,11 +62,11 @@
 <entry id="NTHRDS_ATM"   value="1"  />    
 <entry id="ROOTPE_ATM"   value="0"  />    
 
-<entry id="NTASKS_LND"   value="120"  />    
+<entry id="NTASKS_LND"   value="64"  />    
 <entry id="NTHRDS_LND"   value="1"  />    
-<entry id="ROOTPE_LND"   value="264"  />    
+<entry id="ROOTPE_LND"   value="320"  />    
 
-<entry id="NTASKS_ICE"   value="264"  />    
+<entry id="NTASKS_ICE"   value="320"  />    
 <entry id="NTHRDS_ICE"   value="1"  />    
 <entry id="ROOTPE_ICE"   value="0"  />    
 
@@ -74,7 +74,7 @@
 <entry id="NTHRDS_OCN"   value="1"  />    
 <entry id="ROOTPE_OCN"   value="384"  />    
 
-<entry id="NTASKS_CPL"   value="264"  />    
+<entry id="NTASKS_CPL"   value="320"  />    
 <entry id="NTHRDS_CPL"   value="1"  />    
 <entry id="ROOTPE_CPL"   value="0"  />    
 
