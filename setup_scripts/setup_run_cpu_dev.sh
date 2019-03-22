@@ -72,7 +72,8 @@ if [ -e $runfname ]; then
 	echo "Setting "$runfname" to queue "$queue" with time limit "$timelim
 	tempfname=$(mktemp $temp.XXXXX)
 	cp $runfname bkp.$runfname
-	cat bkp.$runfname | sed "s/\(SBATCH[ ][ ]*-p[ ][ ]*\).*/\1cpu/" |  sed "s/\(^#SBATCH --time=\).*/\1LOLO/"  >$runfname
+	rm $runfname
+	cat bkp.$runfname | sed "s/\(SBATCH[ ][ ]*-p[ ][ ]*\).*/\1"$queue"/" |  sed "s/\(^#SBATCH --time=\).*/\1"$timelim"/"  >$runfname
 else
 	echo "-------------- "$runfname" not found             ---------------"
 	echo "-------------- RUN ME AGAIN AFTER ./configure!!! ---------------"
