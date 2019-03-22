@@ -1,5 +1,5 @@
 &clm_inparm
- fsurdat = '$DIN_LOC_ROOT/lnd/clm2/surfdata/surfdata.pftdyn_0.9x1.25_rcp8.5_simyr1850-2100_rochedo_weg_c100319.nc'
+ fpftdyn = '$DIN_LOC_ROOT/lnd/clm2/surfdata/surfdata.pftdyn_0.9x1.25_rcp8.5_simyr1850-2100_rochedo_weg_c100319.nc'
  hist_fincl2 = 'WA','WT','H2OSOI','SOILLIQ','TG','TSOI','U10','WIND'
  hist_fincl3 = 'TLAI'
  hist_dov2xy = .true.,.true.,.false.
