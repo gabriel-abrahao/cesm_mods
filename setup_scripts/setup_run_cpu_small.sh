@@ -1,5 +1,7 @@
 #!/bin/bash
-nlfolder="/prj/desmclima/gabriel.abrahao/transicao/doutorado/cesm_mods/lists/namelists/"
+modsfolder="/prj/desmclima/gabriel.abrahao/transicao/doutorado/cesm_mods/"
+nlfolder=$modsfolder"/lists/namelists/"
+pefolder=$modsfolder"/setup_scripts/pe_layouts/"
 queue="cpu_small"
 
 RESUBMIT=2
@@ -48,11 +50,12 @@ cat user_nl_clm | grep 'fpftdyn'
 echo "Copying user_nl_cam"
 cp $nlfolder/user_nl_cam .
 
-echo "Copying env_mach_pes.xml"
-cp $nlfolder/env_mach_pes.xml .
+echo "Copying env_mach_pes.xml for "$queue
+cp $pefolder"/env_mach_pes_"$queue".xml" .
 npes=$(cat env_mach_pes.xml | grep '"TOTALPES"' | grep -o '[0-9][0-9]*')
+
 echo "TOTALPES is "$npes
-if [ $npes -lt $pelim ]; then
+if [ $npes -le $pelim ]; then
 	echo "which is fine for "$queue
 else
 	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
