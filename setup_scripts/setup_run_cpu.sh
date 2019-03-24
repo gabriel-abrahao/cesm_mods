@@ -74,6 +74,7 @@ if [ -e $runfname ]; then
 	cp $runfname bkp.$runfname
 	rm $runfname
 	cat bkp.$runfname | sed "s/\(SBATCH[ ][ ]*-p[ ][ ]*\).*/\1"$queue"/" |  sed "s/\(^#SBATCH --time=\).*/\1"$timelim"/"  >$runfname
+	chmod +x $runfname
 else
 	echo "-------------- "$runfname" not found             ---------------"
 	echo "-------------- RUN ME AGAIN AFTER ./configure!!! ---------------"
