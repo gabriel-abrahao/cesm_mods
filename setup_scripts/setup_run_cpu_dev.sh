@@ -44,7 +44,16 @@ echo "Setting RUN_REFCASE in env_conf.xml to "$refcase
 ./xmlchange -file env_conf.xml -id RUN_REFCASE -val $refcase
 
 echo "Copying user_nl_clm and setting an appropriate value for fpftdyn"
-cat $nlfolder/user_nl_clm| sed "s/_\(rcp[0-9]\.[0-9]\)_/_"$rcp"_/" | sed "s/_rochedo_\([a-z]\{3\}\)_/_rochedo_"$scenario"_/" >user_nl_clm
+if [ $rcp == "rcp8.5" ]; then
+	filetag="c100319"
+elif [ $rcp == "rcp2.6" ]; then
+	filetag="c100323"
+else
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!! I dont know what to do with rcp: "$rcp
+	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+fi
+cat $nlfolder/user_nl_clm| sed "s/_\(rcp[0-9]\.[0-9]\)_/_"$rcp"_/" | sed "s/_rochedo_\([a-z]\{3\}\)_/_rochedo_"$scenario"_/"| sed "s/_c[0-9][0-9]*.nc/_"$filetag".nc/" >user_nl_clm
 cat user_nl_clm | grep 'fpftdyn'
 
 echo "Copying user_nl_cam"
