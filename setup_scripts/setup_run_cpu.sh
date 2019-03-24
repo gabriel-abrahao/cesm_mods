@@ -4,9 +4,9 @@ nlfolder=$modsfolder"/lists/namelists/"
 pefolder=$modsfolder"/setup_scripts/pe_layouts/"
 queue="cpu"
 
-RESUBMIT=1
+RESUBMIT=0
 STOP_OPTION="nyears"
-STOP_N=24
+STOP_N=48
 REST_OPTION="nyears"
 REST_N=2
 
