@@ -2,13 +2,13 @@
 modsfolder="/prj/desmclima/gabriel.abrahao/transicao/doutorado/cesm_mods/"
 nlfolder=$modsfolder"/lists/namelists/"
 pefolder=$modsfolder"/setup_scripts/pe_layouts/"
-queue="cpu_small"
+queue="cpu"
 
-RESUBMIT=2
-STOP_OPTION="nmonths"
-STOP_N=6
-REST_OPTION="nmonths"
-REST_N=6
+RESUBMIT=1
+STOP_OPTION="nyears"
+STOP_N=24
+REST_OPTION="nyears"
+REST_N=2
 
 rcp=$(basename $PWD | sed 's/.*\(rcp.\..\)_.*/\1/')
 member=$(basename $PWD | sed 's/.*_\([0-9]\{3\}\)$/\1/')

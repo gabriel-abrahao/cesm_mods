@@ -10,7 +10,7 @@ STOP_N=31
 REST_OPTION="ndays"
 REST_N=31
 
-rcp=$(basename $PWD | sed 's/.*_\(rcp.\..\)_.*/\1/')
+rcp=$(basename $PWD | sed 's/.*\(rcp.\..\)_.*/\1/')
 member=$(basename $PWD | sed 's/.*_\([0-9]\{3\}\)$/\1/')
 scenario=$(basename $PWD | sed 's/.*_\([a-z]\{3\}\)_[0-9]\{3\}$/\1/')
 
@@ -74,6 +74,7 @@ if [ -e $runfname ]; then
 	cp $runfname bkp.$runfname
 	rm $runfname
 	cat bkp.$runfname | sed "s/\(SBATCH[ ][ ]*-p[ ][ ]*\).*/\1"$queue"/" |  sed "s/\(^#SBATCH --time=\).*/\1"$timelim"/"  >$runfname
+	chmod +x $runfname
 else
 	echo "-------------- "$runfname" not found             ---------------"
 	echo "-------------- RUN ME AGAIN AFTER ./configure!!! ---------------"
