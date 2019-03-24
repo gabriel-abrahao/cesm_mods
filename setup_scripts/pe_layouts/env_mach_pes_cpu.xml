@@ -58,11 +58,11 @@
 
 
 
-<entry id="NTASKS_ATM"   value="384"  />    
+<entry id="NTASKS_ATM"   value="408"  />    
 <entry id="NTHRDS_ATM"   value="1"  />    
 <entry id="ROOTPE_ATM"   value="0"  />    
 
-<entry id="NTASKS_LND"   value="64"  />    
+<entry id="NTASKS_LND"   value="88"  />    
 <entry id="NTHRDS_LND"   value="1"  />    
 <entry id="ROOTPE_LND"   value="320"  />    
 
@@ -72,7 +72,7 @@
 
 <entry id="NTASKS_OCN"   value="96"  />    
 <entry id="NTHRDS_OCN"   value="1"  />    
-<entry id="ROOTPE_OCN"   value="384"  />    
+<entry id="ROOTPE_OCN"   value="408"  />    
 
 <entry id="NTASKS_CPL"   value="320"  />    
 <entry id="NTHRDS_CPL"   value="1"  />    
@@ -89,7 +89,7 @@
 <entry id="PSTRID_CPL"   value="1"  />    
 <entry id="PSTRID_GLC"   value="1"  />    
 
-<entry id="TOTALPES"   value="480"  />    
+<entry id="TOTALPES"   value="504"  />    
 <entry id="PES_LEVEL"   value="1r"  />    
 <entry id="MAX_TASKS_PER_NODE"   value="24"  />    
 <entry id="PES_PER_NODE"   value="$MAX_TASKS_PER_NODE"  />    
