@@ -1,0 +1,66 @@
+#! /bin/csh -f
+
+# -------------------------------------------------------------------------
+# yellowstone machine specific settings
+# -------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+# Environment variables for longer term output storage - edit anytime during run
+# -------------------------------------------------------------------------
+
+setenv DOUT_L_MSNAME       `echo $CCSMUSER | tr '[a-z]' '[A-Z]'`
+setenv DOUT_L_MSPWD        $DOUT_L_MSNAME                    
+setenv DOUT_L_MSRPD        3650                              
+setenv DOUT_L_MSPRJ        00000000                          
+
+# -------------------------------------------------------------------------
+# Build and runtime environment variables - edit before the initial build 
+# -------------------------------------------------------------------------
+
+limit datasize  unlimited
+setenv OMP_DYNAMIC FALSE
+setenv MP_LABELIO yes
+
+
+# MPI Environment
+setenv MP_INFOLEVEL                   2
+setenv MP_STDOUTMODE                unordered
+
+source /glade/apps/opt/lmod/lmod/init/csh
+
+module purge
+module load ncarenv/1.0
+module load ncarbinlibs/1.0
+module load intel/13.1.2
+module load ncarcompilers/1.0
+module load netcdf/4.3.0
+module load pnetcdf/1.4.1
+module load esmf
+
+setenv NETCDF_PATH $NETCDF
+setenv PNETCDF_PATH $PNETCDF
+
+setenv OMP_STACKSIZE 32000K
+setenv MP_LABELIO yes
+
+# MPI Environment
+setenv MP_INFOLEVEL                   2
+setenv MP_SHARED_MEMORY             yes
+setenv MP_EUILIB                    us
+setenv MP_STDOUTMODE                unordered
+setenv MP_EAGER_LIMIT               0
+setenv MP_RC_USE_LMC                yes
+
+# Set a host file so that mpi can run on login node
+if ( $HOSTNAME =~ {*login*} ) then
+  echo $HOSTNAME > $CASEROOT/hostfile
+  setenv MP_HOSTFILE $CASEROOT/hostfile
+  setenv MP_PROCS 1
+endif
+
+
+if ( $DEBUG == "TRUE") then
+  module load esmf-5.2.0p1-defio-mpi-g 
+else
+  module load esmf-5.2.0p1-defio-mpi-O
+endif

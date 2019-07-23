@@ -1,0 +1,14 @@
+Substituido os aquivos
+/scratch/desmclima/gabriel.abrahao/cesm/cesm1_0_6/models/ice/cice/src/mpi/ice_global_reductions.F90
+e ice_boundary.F90
+Pelos da versão 1_2_2_1. As única diferenças são a posição do primeiro include mpif.h e a ausência de um segundo em uma subrotina específica. Essa duplicação de includes aparentemente estava causando um erro de ambiguidade
+
+No arquivo
+/scratch/desmclima/gabriel.abrahao/cesm/cesm1_0_6/models/atm/cam/src/control/cam_history.F90
+linha 3840 alterada de
+if (tape(t)%hlist(f)%hwrt_prec == 8) then
+para
+if ((tape(t)%hlist(f)%hwrt_prec == 8) .or. restart) then
+Baseado no post:
+https://bb.cgd.ucar.edu/cesm-122-pio-exhibits-strange-abort-error-when-writing-cam-history-files-edisonhopper
+

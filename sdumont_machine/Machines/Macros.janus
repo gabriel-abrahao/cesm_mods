@@ -1,0 +1,116 @@
+#===============================================================================
+# The following always need to be set
+# SPMD             Whether to build in SPMD mode or not.  [values TRUE FALSE]
+# SMP              Set to TRUE to enable building in SMP mode (uses OpenMP).  
+# USER_CPPDEFS     CPP definitions (non platform dependent)
+#
+#===============================================================================
+
+# Note that CPPDEFS is set in Macros.cppdefs
+CPPDEFS += -DLINUX -DSEQ_$(FRAMEWORK) -DFORTRANUNDERSCORE
+
+ifeq ($(compile_threaded), true)
+   CPPDEFS += -DTHREADED_OMP
+endif
+
+ifeq ($(USE_MPISERIAL),TRUE)
+   FC            := ifort
+   CC            := icc
+else
+   FC            := mpif90
+   CC            := mpicc
+endif
+INC_NETCDF    := $(NETCDF)/include
+LIB_NETCDF    := $(NETCDF)/lib
+MOD_NETCDF    := $(NETCDF)/include
+ifeq ($(USE_MPISERIAL),TRUE)
+   INC_MPI    := $(EXEROOT)/mct/mpi-serial
+   LIB_MPI    := 
+   CPPDEFS    += -DNO_MPIMOD
+   CONFIG_ARGS += CPPFLAGS="$(CPPDEFS)"
+else
+   INC_MPI    := $(OMPIDIR)/include
+   LIB_MPI    := $(OMPIDIR)/lib
+endif
+MPI_LIB_NAME  := mpi
+INC_PNETCDF   := $(PNETCDF)/include
+LIB_PNETCDF   := $(PNETCDF)/lib
+LAPACK_LIBDIR := 
+
+
+ifeq ($(strip $(MODEL)),cam)
+    CPPDEFS += -DNO_MPI2
+endif
+
+
+CFLAGS        := $(CPPDEFS)  -O2 -fp-model precise 
+FIXEDFLAGS    := -132 
+FREEFLAGS     := -FR 
+FFLAGS        := $(CPPDEFS) -fpp -fp-model source -convert big_endian -assume byterecl -ftz -traceback
+FFLAGS_NOOPT  := $(FFLAGS) -O0
+FFLAGS_OPT    := -O2
+LDFLAGS       := 
+AR            := ar
+MOD_SUFFIX    := mod
+CONFIG_SHELL  :=
+
+#===============================================================================
+# Set include paths (needed after override for any model specific builds below)
+#===============================================================================
+
+INCLDIR := -I. 
+ifneq ($(strip $(INC_NETCDF)),)
+INCLDIR += -I$(INC_NETCDF)
+endif
+ifneq ($(strip $(MOD_NETCDF)),)
+INCLDIR += -I$(MOD_NETCDF)
+endif
+ifneq ($(strip $(INC_MPI)),)
+INCLDIR += -I$(INC_MPI)
+endif 
+ifneq ($(strip $(INC_PNETCDF)),)
+INCLDIR += -I$(INC_PNETCDF)
+endif
+
+#===============================================================================
+# Set model and other specific options
+# NOTE - all CPPDEFS options must be defined before this point
+#===============================================================================
+
+ifeq ($(DEBUG),TRUE)
+  FFLAGS       +=  -CU -check pointers -fpe0 -ftz
+  FFLAGS_NOOPT +=  -CU -check pointers -fpe0 -ftz
+else
+  FFLAGS += $(FFLAGS_OPT)
+endif
+
+ifeq ($(compile_threaded), true)
+  FFLAGS       += -openmp
+  FFLAGS_NOOPT += -openmp
+  CFLAGS       += -openmp
+  LDFLAGS      += -openmp
+endif
+
+ifeq ($(strip $(MODEL)),cam)
+# These RRTMG files cause a compiler error when using optimization.
+# Until mods are made to read the data from files, just remove optimization from
+# their compilation.
+rrtmg_lw_k_g.o: rrtmg_lw_k_g.f90
+	$(FC) -c $(CPPDEFS) $(INCLDIR) $(INCS) $(FREEFLAGS) $(FFLAGS_NOOPT) $<
+rrtmg_sw_k_g.o: rrtmg_sw_k_g.f90
+	$(FC) -c $(CPPDEFS) $(INCLDIR) $(INCS) $(FREEFLAGS) $(FFLAGS_NOOPT) $<
+endif
+
+ifeq ($(MODEL),mct)
+        #add arguments for mct configure here
+  CONFIG_ARGS += CC="$(CC)" FC="$(FC)" F90="$(FC)" INCLUDEPATH="-I$(INC_MPI)"
+endif
+
+ifeq ($(MODEL),pio)
+  ifneq ($(strip $(PIO_CONFIG_OPTS)),)
+    CONFIG_ARGS += $(PIO_CONFIG_OPTS)
+  endif 
+  CONFIG_ARGS += FC="$(FC)" F90="$(FC)" NETCDF_PATH=$(NETCDF) FFLAGS="$(FFLAGS)" PNETCDF_PATH=$(PNETCDF)
+endif
+# NetCDF 4.3.0? and later? need -lnetcdff 
+SLIBS += -lnetcdff

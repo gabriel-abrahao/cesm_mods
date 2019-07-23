@@ -1,0 +1,74 @@
+#
+# Makefile Macros generated from /scratch/desmclima/gabriel.abrahao/cesm/cesm1_2_2_1/scripts/ccsm_utils/Machines/config_compilers.xml using
+# COMPILER=gnu
+# OS=LINUX
+# MACH=sdumont
+#
+CPPDEFS+= -DFORTRANUNDERSCORE -DNO_R16  -DFORTRANUNDERSCORE -DNO_R16 -DLINUX -DCPRGNU  -DLINUX -DCPRGNU 
+
+SLIBS+=  -L/scratch/app/netcdf/4.6_gnu/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz 
+
+CONFIG_ARGS:=
+
+CXX_LINKER:=FORTRAN
+
+ESMF_LIBDIR:=
+
+FC_AUTO_R8:= -fdefault-real-8 
+
+FFLAGS:= -O -fconvert=big-endian -ffree-line-length-none -ffixed-line-length-none  -fno-range-check -I/scratch/app/netcdf/4.6_gnu/include 
+
+FFLAGS_NOOPT:= -O0 
+
+FIXEDFLAGS:=  -ffixed-form 
+
+FREEFLAGS:= -ffree-form 
+
+MPICC:= mpicc  
+
+MPICXX:= mpicxx 
+
+MPIFC:= mpif90 
+
+MPI_LIB_NAME:=
+
+MPI_PATH:=
+
+NETCDF_PATH:= /scratch/app/netcdf/4.6_gnu/
+
+PNETCDF_PATH:=
+
+SCC:= gcc 
+
+SCXX:= g++ 
+
+SFC:= gfortran 
+
+SUPPORTS_CXX:=TRUE
+
+ifeq ($(MPILIB), openmpi) 
+   MPI_LIB_NAME := mpi 
+endif
+
+ifeq ($(MPILIB), mpich) 
+   MPI_LIB_NAME := mpich 
+endif
+
+ifeq ($(compile_threaded), true) 
+   FFLAGS += -fopenmp 
+   LDFLAGS += -fopenmp 
+   CFLAGS += -fopenmp 
+endif
+
+ifeq ($(MODEL), cism) 
+   CMAKE_OPTS += -D CISM_GNU=ON 
+endif
+
+ifeq ($(MODEL), pop2) 
+   CPPDEFS += -D_USE_FLOW_CONTROL 
+endif
+
+ifeq ($(DEBUG), TRUE) 
+   FFLAGS += -g -Wall 
+endif
+

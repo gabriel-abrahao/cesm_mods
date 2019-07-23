@@ -1,0 +1,124 @@
+#! /bin/csh 
+
+# -------------------------------------------------------------------------
+# USERDEFINED
+# Edit this file to add module load or other paths needed for the build
+# and run on the system.  Can also include general env settings for machine.
+# Some samples are below
+# -------------------------------------------------------------------------
+
+setenv COMPILER "intel"
+
+# This will initialize the environment for the modules package, including the module function we use here
+source $MODULESHOME/init/csh
+#source /opt/modules/default/init/csh
+#if ( $COMPILER == "pgi" ) then
+#  module load pgi
+#endif
+#module load netcdf
+
+# Load the appropriate compiler
+if ( $COMPILER == "gnu" ) then
+#DONT load here, as the netcdf module will automatically get the right GNU
+#module load gcc-6/current
+endif
+if ( $COMPILER == "intel" ) then
+echo "Sourcing Intel scripts..."
+#source /scratch/app/modulos/intel-psxe-2017.csh
+source /scratch/app/modulos/intel-psxe-2017.csh intel64
+echo "Done sourcing Intel scripts"
+endif
+
+# Load openmpi to use instead of Intel MPI
+# Remember to unload it first. This way it gets ahead of the Intel wrappers in PATH
+#module load openmpi/2.1_intel
+#module unload openmpi/1.10_intel
+#module load openmpi/1.10_intel
+#module unload openmpi/2.0.1_intel
+#module load openmpi/2.0.1_intel
+if ( $COMPILER == "gnu" ) then
+module unload openmpi/1.10_gnu
+module load openmpi/1.10_gnu
+endif
+if ( $COMPILER == "intel" ) then
+#module unload openmpi/1.10_intel
+#module load openmpi/1.10_intel
+module unload openmpi/icc/2.0.4.2
+module load openmpi/icc/2.0.4.2
+endif
+#module unload openmpi/3.0_gnu
+#module load openmpi/3.0_gnu
+
+
+#
+## Associated env vars
+#setenv CC mpicc
+#setenv CXX mpicxx
+#setenv FC mpifort
+#setenv F77 mpifort
+#setenv F90 mpifort
+if ( $COMPILER == "gnu" ) then
+setenv OMPI_CC gcc
+setenv OMPI_CXX g++
+setenv OMPI_FC gfortran
+setenv OMPI_F77 gfortran
+setenv OMPI_F90 gfortran
+setenv I_MPICC gcc
+setenv I_MPICXX g++
+setenv I_MPIFC gfortran
+setenv I_MPIF77 gfortran
+setenv I_MPIF90 gfortran
+setenv MPICH_CC gcc
+setenv MPICH_CXX g++
+setenv MPICH_FC gfortran
+setenv MPICH_F77 gfortran
+setenv MPICH_F90 gfortran
+endif
+
+if ( $COMPILER == "intel" ) then
+setenv CC mpicc
+setenv CXX mpicxx
+setenv FC mpifort
+setenv F77 mpifort
+setenv F90 mpifort
+setenv OMPI_CC icc
+setenv OMPI_CXX icpc
+setenv OMPI_FC ifort
+setenv OMPI_F77 ifort
+setenv OMPI_F90 ifort
+setenv I_MPICC icc
+setenv I_MPICXX icpc
+setenv I_MPIFC ifort
+setenv I_MPIF77 ifort
+setenv I_MPIF90 ifort
+setenv MPICH_CC icc
+setenv MPICH_CXX icpc
+setenv MPICH_FC ifort
+setenv MPICH_F77 ifort
+setenv MPICH_F90 ifort
+endif
+
+# Special compiler flags
+
+# Old PERL that accepts no escaping in regex
+module load perl/5.20
+
+# NetCDF compiled with GNU (which one?)
+if ( $COMPILER == "gnu" ) then
+module load netcdf/4.6_gnu
+endif
+# NetCDF compiled with Intel, and dependencies
+if ( $COMPILER == "intel" ) then
+#module load netcdf/4.6_openmpi-1.10_intel
+module load netcdf/4.6_openmpi-2.0_intel
+# Set this variable to try and make sure HDF5 will be linked in Macros
+setenv HDF5_PATH "/scratch/app/hdf5/1.8_openmpi-2.0_intel" 
+endif
+
+# Associated env vars
+setenv NETCDF_PATH `nc-config --prefix`
+if ( $COMPILER == "intel" ) then
+#setenv MPICH_PATH "/scratch/app/openmpi/1.10_intel"
+setenv MPICH_PATH "/opt/mpi/openmpi-icc/2.0.4.2"
+endif
+
